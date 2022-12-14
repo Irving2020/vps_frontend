@@ -2,7 +2,7 @@
   <div class="Login-box">
     <div class="Login-container">
       <form class="Login-clock" style="color:skyblue">
-        To be Update ...
+        <FliqloCo style="z-index:999"/>
       </form>
       <form class="Login-form">
         <h3>LOGIN</h3>
@@ -44,6 +44,7 @@
 import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
 import { defineComponent } from 'vue';
+import FliqloCo from './Fliqlo.vue'
 const LoginCom = defineComponent({
   // 组件定义
   props:{
@@ -52,6 +53,9 @@ const LoginCom = defineComponent({
   setup(props) {
     return {
     }
+  },
+  components:{
+    FliqloCo
   }
 })
 
