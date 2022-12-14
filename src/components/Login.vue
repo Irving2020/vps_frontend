@@ -1,10 +1,12 @@
 <template>
   <div class="Login-box">
     <div class="Login-container">
-      <form class="Login-clock">
+      <form class="Login-clock" style="color:skyblue">
+        To be Update ...
       </form>
       <form class="Login-form">
         <h3>LOGIN</h3>
+        <h4 style="color:skyblue">Irving blog is coming online ...</h4>
         <el-form
           ref="ruleFormRef"
           :model="ruleForm"
@@ -42,82 +44,88 @@
 import { reactive, ref } from 'vue'
 import type { FormInstance } from 'element-plus'
 import { defineComponent } from 'vue';
-const LoginPolo = defineComponent({
+const LoginCom = defineComponent({
   // 组件定义
   props:{
     message: String
   },
   setup(props) {
-    const ruleFormRef = ref<FormInstance>()
-
-    const checkAge = (rule: any, value: any, callback: any) => {
-      if (!value) {
-        return callback(new Error('Please input the age'))
-      } 
-      setTimeout(() => {
-        if (!Number.isInteger(value)) {
-          callback(new Error('Please input digits'))
-        } else {
-          if (value < 18) {
-            callback(new Error('Age must be greater than 18'))
-          } else {
-            callback()
-          }
-        }
-      }, 1000)
-    }
-
-    const validatePass = (rule: any, value: any, callback: any) => {
-      if (value === '') {
-        callback(new Error('Please input the password'))
-      } else {
-        if (ruleForm.checkPass !== '') {
-          if (!ruleFormRef.value) return
-          ruleFormRef.value.validateField('checkPass', () => null)
-        }
-        callback()
-      }
-    }
-
-    const validatePass2 = (rule: any, value: any, callback: any) => {
-      if (value === '') {
-        callback(new Error('Please input the password again'))
-      } else if (value !== ruleForm.pass) {
-        callback(new Error("Two inputs don't match!"))
-      } else {
-        callback()
-      }
-    }
-
-    const ruleForm = reactive({
-      pass: '',
-      checkPass: '',
-      age: '',
-    })
-
-    const rules = reactive({
-      pass: [{ validator: validatePass, trigger: 'blur' }],
-      checkPass: [{ validator: validatePass2, trigger: 'blur' }],
-      age: [{ validator: checkAge, trigger: 'blur' }],
-    })
-
-    const submitForm = (formEl: FormInstance | undefined) => {
-      if (!formEl) return
-      formEl.validate((valid) => {
-        if (valid) {
-          console.log('submit!')
-        } else {
-          console.log('error submit!')
-          return false
-        }
-      })
-    }
-
-    const resetForm = (formEl: FormInstance | undefined) => {
-      if (!formEl) return
-      formEl.resetFields()
+    return {
     }
   }
+})
+
+const ruleFormRef = ref<FormInstance>()
+
+const checkAge = (rule: any, value: any, callback: any) => {
+  if (!value) {
+    return callback(new Error('Please input the age'))
+  } 
+  setTimeout(() => {
+    if (!Number.isInteger(value)) {
+      callback(new Error('Please input digits'))
+    } else {
+      if (value < 18) {
+        callback(new Error('Age must be greater than 18'))
+      } else {
+        callback()
+      }
+    }
+  }, 1000)
+}
+const validatePass = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    callback(new Error('Please input the password'))
+  } else {
+    if (ruleForm.checkPass !== '') {
+      if (!ruleFormRef.value) return
+      ruleFormRef.value.validateField('checkPass', () => null)
+    }
+    callback()
+  }
+}
+
+const validatePass2 = (rule: any, value: any, callback: any) => {
+  if (value === '') {
+    callback(new Error('Please input the password again'))
+  } else if (value !== ruleForm.pass) {
+    callback(new Error("Two inputs don't match!"))
+  } else {
+    callback()
+  }
+}
+
+const ruleForm = reactive({
+  pass: '',
+  checkPass: '',
+  age: '',
+})
+
+const rules = reactive({
+  pass: [{ validator: validatePass, trigger: 'blur' }],
+  checkPass: [{ validator: validatePass2, trigger: 'blur' }],
+  age: [{ validator: checkAge, trigger: 'blur' }],
+})
+
+const submitForm = (formEl: FormInstance | undefined) => {
+  if (!formEl) return
+  formEl.validate((valid) => {
+    if (valid) {
+      console.log('submit!')
+    } else {
+      console.log('error submit!')
+      return false
+    }
+  })
+}
+
+const resetForm = (formEl: FormInstance | undefined) => {
+  // if (!formEl) return
+  // formEl.resetFields()
+}
+
+defineExpose({
+  LoginCom
 })
 </script>
 
@@ -140,6 +148,9 @@ const LoginPolo = defineComponent({
   height: 20%;
   margin: auto;
   border-radius: 67px;
+  text-align: center;
+  line-height: 20vh;
+  font-family: Arial, Helvetica, sans-serif;
   background: #b5abd8;
   box-shadow: 35px 35px 70px #5e5779,
   -35px -35px 70px #e2cfff;
